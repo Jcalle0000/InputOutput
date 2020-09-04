@@ -42,21 +42,38 @@ app.post('/', function(req,res){
 
 // inside index.ejs
 // this is from the action=post"/about""
+/* This is how we send data MAIN to About */
 app.post('/about', function(req,res){
     // res.end(JSON.stringify(req.body))
-    console.log(req.body.nameData)
-    console.log(req.body.emailData)
+    console.log("Through post"+req.body.nameData) // request data coming in
+    console.log("Through post"+req.body.emailData)
     var name= req.body.nameData;
     var email=req.body.emailData;
-    res.render('pages/about',{
-        obj1=name,
-        obj2=email
+    // console.log("name is: "+name)
+    // console.log("Email is: "+ email)
+
+    res.render('pages/about', { // we send this data to about
+        name:name,
+        email:email
+
     })
+    console.log("Sending data ^ from main to about")
 
 })
-
+// This is how we get Data from MAIN to ABOUT
 app.get('/about', function(req,res){
-    res.render('pages/about')
+    console.log('getting data from Main to about')
+    // these are the variables show in the ejs files
+    // if you go straight into the about page and bypassing evertyhing
+    // default values show
+    
+    var name="default"
+    var email="default"
+    res.render('pages/about', {
+        name:name,
+        email:email
+        // email:req.body.email
+    })
 })
 
 app.listen(port, ()=>{
