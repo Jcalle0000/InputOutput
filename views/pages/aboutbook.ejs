@@ -4,22 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/assets/styles.css" rel="stylesheet" type="text/css" />
-    <title>Testing 2</title>
+    <title>About Book</title>
 </head>
 <body>
     <header>
         <div class="nav">
             <ul>
                 <li><a href="/">Main</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a href="/about">About</a></li>                
                 <li><a href="/books">books</a></li>
                 <li><a href="/bookResults">bookResult</a></li>
             </ul>
         </div>
     </header>
-    <H2>Data send from Main:</H2>
-   <%= name %> <br>
-   <%= email %> 
 
+    <form action="/bookResults" method="POST">
+        <div class="testDate">
+            <label>Publish Date:</label>
+            <input type="date" name="publishDate" value= "2020-09-01" >
+            <a href="/books">Cancel</a>
+            <!-- books is the link in pages -->
+            <button type ="submit">Create</button>
+        </div> 
+    </form>
+        
+    
 </body>
 </html>

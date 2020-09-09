@@ -22,3 +22,10 @@ body{
     padding-right:50px;
     color:white;
 }
+.testDate a{
+    color: White;
+    text-decoration:none;
+}
+.testDate hover{
+    text-decoration:underline;
+}

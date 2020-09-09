@@ -3,17 +3,32 @@ const app=express()
 const bodyParser=require('body-parser')
 const { response } = require('express')
 const port=3401
+const mongoose=require('mongoose')
+// setting up mongoose connection
+var mongoDB='mongodb://127.0.0.1/book_database'
+mongoose.connect(mongoDB, { useNewUrlParser:true ,useUnifiedTopology:true})
+// getting the default connection
+var db = mongoose.connection
+db.on('error', console.error.bind(console, 'MongoDB connection error') )
 
 app.use(bodyParser.json() ) // is this needed?
 app.use(bodyParser.urlencoded({ extended:true }) )
 
+const bookRouter=require('./routes/books')
+app.use('/books' , bookRouter)
+
+const bookResultRouter=require('./routes/bookResult')
+app.use('/bookResults', bookResultRouter)
+
 // for our html with JS
 app.set('view engine', 'ejs')
+
 // For our css
 app.use('/assets', express.static('assets')) 
 // routes
 app.get('/', function(req,res) {
     // res.send('Hello World')
+
     res.render('pages/index')
 })
 var person={
